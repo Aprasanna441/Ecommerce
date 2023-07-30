@@ -102,3 +102,21 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+// <div class="d-flex justify-content-around" key={i}>
+// <div className="card" style={{width:'18rem'}}>
+//   <img className="card-img-top" src={"http://127.0.0.1:8000"+ prod.image} alt="Card image cap"/>
+ 
+ 
+//   <div className="card-body">
+//     <h5 className="card-title">
+//       {prod.title}
+//     </h5>
+//     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+//     <a href="#" className="btn btn-primary">Add To Cart</a>
+//   </div>
+// </div>
+// </div>
