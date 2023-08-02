@@ -35,6 +35,7 @@ const Login = () => {
       dispatch(setUserInfo({email:actualData.email,name:""}))
 
       storeToken(res.data.token);
+      navigate('/')
 
     }
   };

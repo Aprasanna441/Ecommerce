@@ -14,8 +14,10 @@ import Home from "./components/Home";
 import LoginReg from "./components/LoginReg";
 import Categories from "./components/Categories";
 import Products from "./components/Products";
+import { getToken } from "./services/localStorage";
 
 const App = () => {
+  const {access_token}=getToken()
   return (
     <>
       <BrowserRouter>
@@ -31,7 +33,8 @@ const App = () => {
 
             <Route path="/about" element={<About />} />
           </Route>
-          <Route path="/account" element={<LoginReg />} />
+          <Route path="/account"   element={access_token?<Products/>:<LoginReg/>} />
+          
         </Routes>
       </BrowserRouter>
     </>

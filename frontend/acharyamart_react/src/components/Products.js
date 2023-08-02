@@ -2,11 +2,17 @@ import React from 'react'
 import { useProductsQuery } from '../services/products'
 import { useEffect } from 'react'
 import { useState } from 'react'
+ import slide1 from '../media/slide1.jpg'
+ import slide2 from '../media/slide2.jpg'
+import slide3 from  '../media/slide2.jpg'
+import $ from 'jquery'
+import { Button } from '@mui/material'
 
 
 import Grid from '@mui/material/Grid';
 
 import About from "../components/About"
+import SearchBar from './SearchBar'
 
 
 const Products = () => {
@@ -17,15 +23,15 @@ const Products = () => {
 
 
 
-
+ 
 
 
 
   useEffect(() => {
-    setProducts(data)
+    
+     setProducts(data)
     console.log(data);
   }, [isLoading,data])
-
 
 
 
@@ -34,24 +40,25 @@ const Products = () => {
   return (
 <>
 
+<SearchBar/>
 
-
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
+<div id="carouselExampleControls" class="carousel slide " data-interval="1000" data-ride="carousel" data-wrap="true">
+  <div class="carousel-inner" data-interval="200">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="..." alt="First slide"/>
+      <img class="d-block w-100 " style={{height:'85vh'}} src={slide2} alt="First slide"/>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Second slide"/>
+      <img class="d-block w-100 " style={{height:'85vh'}} src={slide1} alt="Second slide"/>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Third slide"/>
+      <img class="d-block w-100 " style={{height:'85vh'}} src={slide3} alt="Third slide"/>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
+   
   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
@@ -79,7 +86,7 @@ const Products = () => {
 
               </div>
             </div>
-            )):<h1 style={{ textAlign: 'center' }}>Loading</h1>}
+            )):<h1 style={{ textAlign: 'center' }}>Loading </h1>}
 
             </div>
             </div>

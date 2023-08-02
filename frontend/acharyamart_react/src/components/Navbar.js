@@ -24,16 +24,14 @@ const Navbar = () => {
   console.log(access_token);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-danger p-3">
+    <nav className="navbar navbar-expand-lg navbar-light  p-3 w-100" style={{backgroundColor:'wheat'}}>
     <NavLink className="navbar-brand" to="/"><span style={{color:'aqua'}}> AC</span>_HARYAMART</NavLink>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <style>
-      
-    </style>
+   
   
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <div className="collapse navbar-collapse w-100" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
           <NavLink className="nav-link" style={linkStyle} to="/products">Home </NavLink>
