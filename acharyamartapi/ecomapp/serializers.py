@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser,Customer,Product,Cart,CartProduct,Order
+from .models import CustomUser,Customer,Product,Cart,CartProduct,Order,Category
 from django.contrib.auth import authenticate
 
 class LoginSerializer(serializers.ModelSerializer):
@@ -10,7 +10,11 @@ class LoginSerializer(serializers.ModelSerializer):
 
 
 
-   
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Category
+        fields='__all__'
+
 
 class UserRegistrationSerializer(serializers.Serializer):
     email=serializers.CharField() 

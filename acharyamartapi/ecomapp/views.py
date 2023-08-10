@@ -94,6 +94,8 @@ class CategoricalProductView(EcomMixin,TemplateView):
         context["categories"]=Category.objects.all()
 
         return context
+    
+
 
 
 class AllProductView(EcomMixin,TemplateView):
@@ -511,7 +513,7 @@ from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout,authenticate
 from  rest_framework import status
-from .serializers import LoginSerializer,UserRegistrationSerializer,ForgetPasswordSerializer,UserChangePasswordSerializer
+from .serializers import LoginSerializer,UserRegistrationSerializer,ForgetPasswordSerializer,UserChangePasswordSerializer,CategorySerializer
 from .serializers import AllProductsSerializer,CategoricalProductsSerializer,AddProductsSerializer,AddToCartSerializer
 from .serializers import MyCartSerializer,CheckoutSerializer
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
@@ -626,6 +628,13 @@ class ListProductSerializerView(APIView):
         serializer=AllProductsSerializer(dataa,many=True)
         return Response(serializer.data)
     
+class ListCategorySerializerView(APIView):
+    def get(self,request,format=None):
+        dataa=Category.objects.all()
+        serializer=CategorySerializer(dataa,many=True)
+        return Response(serializer.data)
+
+    
 class CategoricalListProductSerializerView(APIView):
     def get(self,request,format=None):
         search = self.request.query_params.get('category') 
@@ -633,7 +642,7 @@ class CategoricalListProductSerializerView(APIView):
         if search:
             dataa=Product.objects.filter(category__title__icontains=search)
             serializer=CategoricalProductsSerializer(dataa,many=True)
-        return Response(serializer.data)
+            return Response(serializer.data)
     
 class AddProductSerializerView(APIView):
     serialier_class=AddProductsSerializer
