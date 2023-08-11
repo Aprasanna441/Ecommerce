@@ -1,5 +1,5 @@
 import React from 'react'
-import { useProductsQuery } from '../services/products'
+import { useProductsQuery,useSearchProductsQuery } from '../services/products'
 import { useEffect } from 'react'
 import { useState } from 'react'
  import slide1 from '../media/slide1.jpg'
@@ -7,6 +7,7 @@ import { useState } from 'react'
 import slide3 from  '../media/slide2.jpg'
 import $ from 'jquery'
 import { Button } from '@mui/material'
+import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector'
 
 
 import Grid from '@mui/material/Grid';
@@ -17,9 +18,12 @@ import SearchBar from './SearchBar'
 
 const Products = () => {
   const [products, setProducts] = useState([])
+  const string=useSelector((state)=>state.search.queryText)
+  
 
 
-  const { data, isLoading } = useProductsQuery()
+  const { data:allprod, isLoading:prodloading } = useProductsQuery()
+  const {data:searchprod,isLoading:searchloading}=useSearchProductsQuery(string)
 
 
 
@@ -27,11 +31,10 @@ const Products = () => {
 
 
 
+
   useEffect(() => {
-    
-     setProducts(data)
-    console.log(data);
-  }, [isLoading,data])
+    string? setProducts(searchprod):setProducts(allprod)
+  }, [prodloading,searchloading,allprod,searchprod,string])
 
 
 
@@ -41,6 +44,7 @@ const Products = () => {
 <>
 
 <SearchBar/>
+{string?"":
 
 <div id="carouselExampleControls" class="carousel slide " data-interval="1000" data-ride="carousel" data-wrap="true">
   <div class="carousel-inner" data-interval="200">
@@ -65,6 +69,7 @@ const Products = () => {
   </a>
 </div>
 
+}
 
 
       <h1 style={{textAlign:'center'}}>Top Notch Products</h1>

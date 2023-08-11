@@ -23,7 +23,7 @@ const postApi = createApi({
     }),
 
 
-    //next endpoint
+    //get all products
     products: builder.query({
       query: () => {
         return {
@@ -35,12 +35,15 @@ const postApi = createApi({
         }
       }
     }),
-    products: builder.query({
-      query: (category) => {
+    //search
+    searchProducts: builder.query({
+      query: (str) => {
         return {
-          url: "list-products",
-          method: "GET"
-          
+          url: "search-products/",
+          method: "GET",
+          params:{
+            "query":str
+          }
           
           
         }
@@ -78,7 +81,7 @@ const postApi = createApi({
   }),
 });
 
-export const {useLoginMutation,useProductsQuery,useCategoricalProductsQuery,useCategorylistQuery}=postApi 
+export const {useLoginMutation,useProductsQuery,useCategoricalProductsQuery,useCategorylistQuery,useSearchProductsQuery}=postApi 
 export default postApi;
 
 
