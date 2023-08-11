@@ -507,7 +507,7 @@ class ContactView(TemplateView):
 
 
 
-
+from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
@@ -627,6 +627,15 @@ class ListProductSerializerView(APIView):
         dataa=Product.objects.all()
         serializer=AllProductsSerializer(dataa,many=True)
         return Response(serializer.data)
+
+class SearchProductSerializerView(APIView):
+    
+    def get(self,request,format=None):
+        title = self.request.query_params.get('query') 
+        dataa=Product.objects.filter(Q(title__icontains=title) | Q(category__title__icontains=title))
+        serializer=AllProductsSerializer(dataa,many=True)
+        return Response(serializer.data)
+
     
 class ListCategorySerializerView(APIView):
     def get(self,request,format=None):
