@@ -9,6 +9,13 @@ import $ from 'jquery'
 import { Button } from '@mui/material'
 import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector'
 
+import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 
 import Grid from '@mui/material/Grid';
 
@@ -17,6 +24,9 @@ import SearchBar from './SearchBar'
 
 
 const Products = () => {
+
+  const [ filter,changeFilter]=useState("")
+
   const [products, setProducts] = useState([])
   const string=useSelector((state)=>state.search.queryText)
   
@@ -26,13 +36,24 @@ const Products = () => {
   const {data:searchprod,isLoading:searchloading}=useSearchProductsQuery(string)
 
 
-
+ const filterChange=(e)=>{
+  e.preventDefault() 
+  let sortedproduct
+    if( e.value == 0){
+      sortedproduct=[...products].sort((a,b)=>a.marked_price-b.marked_price)
+    }
+    else{
+       sortedproduct=[...products].sort((a,b)=>b.marked_price-a.marked_price)
+    }
+  setProducts(sortedproduct)
+ }
  
 
 
 
 
   useEffect(() => {
+    
     string? setProducts(searchprod):setProducts(allprod)
   }, [prodloading,searchloading,allprod,searchprod,string])
 
@@ -73,6 +94,26 @@ const Products = () => {
 
 
       <h1 style={{textAlign:'center'}}>Top Notch Products</h1>
+
+
+{/* //filter */}
+
+<FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Filter</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value='0'
+    label="Age"
+     onChange={filterChange}
+  >
+    <MenuItem value={0}>Prict low to high</MenuItem>
+    <MenuItem value={1}>Prict low to high</MenuItem>
+
+  </Select>
+</FormControl>
+
+
       <div className="container">
       <div class="d-flex justify-content-around  flex-wrap">
 

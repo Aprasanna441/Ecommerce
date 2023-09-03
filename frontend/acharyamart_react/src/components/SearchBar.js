@@ -27,18 +27,17 @@ const SearchBar = () => {
   return (
     <>
     
-    <Box
-    style={{textAlign: 'center'}}
+    <Box style={{textAlign: 'center'}}
       component="form" 
       onSubmit={searchText}
       
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },backgroundColor: 'wheat'
+        '& > :not(style)': { m: 1, width: '25ch' },backgroundColor: 'wheat',
       }}>
-        <TextField id="outlined-basic" name='string' onChange={(e)=>{e.target.value == ""? dispatch(removeQueryText()):console.log(e.target.value) }} label="Enter products🔍 " variant="standard" />
-     
-      <Button variant="contained" onClick={searchText} color="primary">Search Products</Button>
+        <TextField id="outlined-basic" name='string' onChange={(e)=>{e.target.value == ""? dispatch(removeQueryText()): console.log("") }} label="Enter products🔍 " variant="filled" />
+
       </Box>
+     
      
       
     </>
