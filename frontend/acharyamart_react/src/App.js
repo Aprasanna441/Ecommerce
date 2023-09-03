@@ -10,6 +10,7 @@ import Layout from "./components/Layout";
 import About from "./components/About";
 import Mycart from "./components/MyCart";
 import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
 
 import LoginReg from "./components/LoginReg";
 import Categories from "./components/Categories";
@@ -25,6 +26,8 @@ const App = () => {
           <Route path="/" element={<Home />}>
             <Route path="/about" element={<About />} />
             <Route path="/categories" element={<Categories />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+
             
             <Route path="/mycart" element={<Mycart />} />
             <Route path="/" element={<Products />} />

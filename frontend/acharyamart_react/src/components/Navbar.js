@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { getToken, removeToken } from '../services/localStorage'
+
 const Navbar = () => {
   const {access_token}=getToken()
+
 
   const navigate=useNavigate()
     const nav_lik= {
@@ -18,10 +20,12 @@ const Navbar = () => {
 
     const logoutHandler=()=>{
       removeToken()
+      localStorage.removeItem("name")
       navigate('/account')
     }
     
-  console.log(access_token);
+  
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light  p-3 w-100" style={{backgroundColor:'wheat'}}>
@@ -45,7 +49,11 @@ const Navbar = () => {
         {access_token?
          <li className="nav-item">
          <Button variant="contained"  onClick={logoutHandler} >Logout</Button>
-       </li>:
+         <a  href='/dashboard' >Dashboard</a>
+         
+       </li> 
+       :
+      
         <li className="nav-item">
           <NavLink className="nav-link" style={linkStyle} to="/account">Login/Signup</NavLink>
         </li>

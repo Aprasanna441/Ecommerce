@@ -2,7 +2,7 @@ from ecomapp import views
 from django.urls import path
 from ecomapp.views import UserLoginSerializerView,UserRegistrationSerializerView,ForgetPasswordSerializerView,ChangePasswordSerializerView
 from ecomapp.views import ListProductSerializerView,CategoricalListProductSerializerView,AddProductSerializerView,AddToCartSerializerView
-from ecomapp.views import MyCartView,CheckOutSerializerView,ListCategorySerializerView,SearchProductSerializerView
+from ecomapp.views import MyCartView,CheckOutSerializerView,ListCategorySerializerView,SearchProductSerializerView,UserInfo
 from django.urls import path
 
 urlpatterns = [
@@ -17,7 +17,8 @@ urlpatterns = [
     path('add-products/',AddProductSerializerView.as_view(),name="add-prod"),
     path('add-to-cart/',AddToCartSerializerView.as_view(),name="addtocartserializer"),
     path('mycart/',MyCartView.as_view(),name="mycartserializer"),
-    path('checkout/',CheckOutSerializerView.as_view(),name="checkout")
+    path('checkout/',CheckOutSerializerView.as_view(),name="checkout"),
+    path('user/',UserInfo.as_view(),name="userinfo"),
     
     
 

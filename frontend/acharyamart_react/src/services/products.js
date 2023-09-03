@@ -1,6 +1,8 @@
 import { applyMiddleware } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import { getToken } from "./localStorage";
+let {access_token}=getToken()
+console.log(access_token)
 const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
@@ -44,6 +46,7 @@ const postApi = createApi({
           params:{
             "query":str
           }
+         
           
           
         }
@@ -64,7 +67,7 @@ const postApi = createApi({
         }
       }
     }),
-    //next 
+    //query of category list
     categorylist: builder.query({
       query: () => {
         return {
@@ -76,12 +79,28 @@ const postApi = createApi({
         }
       }
     }),
+    //User info query
+
+    userInfo: builder.query({
+      query: () => {
+        return {
+          url: "user/",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+        }
+          
+          
+          
+        }
+      }
+    }),
     //next
 
   }),
 });
 
-export const {useLoginMutation,useProductsQuery,useCategoricalProductsQuery,useCategorylistQuery,useSearchProductsQuery}=postApi 
+export const {useLoginMutation,useProductsQuery,useCategoricalProductsQuery,useCategorylistQuery,useSearchProductsQuery,useUserInfoQuery}=postApi 
 export default postApi;
 
 

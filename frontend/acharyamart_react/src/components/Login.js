@@ -14,6 +14,10 @@ import { useEffect } from "react";
 
 
 const Login = () => {
+
+  
+ 
+
   const navigate = useNavigate();
   const [loginUser] = useLoginMutation();
   const dispatch = useDispatch()
@@ -33,9 +37,11 @@ const Login = () => {
       let {access_token}=getToken()
       dispatch(setUserToken({access_token:access_token}))
       dispatch(setUserInfo({email:actualData.email,name:""}))
-
+      
+      
       storeToken(res.data.token);
       navigate('/')
+      
 
     }
   };
@@ -43,7 +49,8 @@ const Login = () => {
   useEffect(()=>{
     // let {access_token}=getToken()
         // dispatch(setUserToken({access_token:access_token}))
-    dispatch(setUserInfo({email:"Happynath@gm.com",name:""}))
+    dispatch(setUserInfo({email:"",name:""}))
+    
   // },[access_token,dispatch])
   },[])
 

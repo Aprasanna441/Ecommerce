@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import CustomUser,Customer,Product,Cart,CartProduct,Order,Category
 from django.contrib.auth import authenticate
 
+
+class UserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Customer
+        fields='__all__'
+
 class LoginSerializer(serializers.ModelSerializer):
     email=serializers.EmailField(max_length=255)
     class Meta:

@@ -786,9 +786,23 @@ class CheckOutSerializerView(APIView):
         return Response(serializer.error,status=status.HTTP_400_BAD_REQUEST)
 
 
-        
+from .serializers import UserInfoSerializer    
 
         
+class UserInfo(APIView):
+    serializer=UserInfoSerializer
+
+    def get(self,request,format=None):
+
+        email=request.user
+        data=Customer.objects.get(user=request.user)
+        serializer=UserInfoSerializer(data)
+
+
+
+        return Response(serializer.data)
+
+
 
 
     
